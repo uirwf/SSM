@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://E:/develop/IdeaProjects/SpringBoot/SpringBoot_quick/SpringBoot_quick.iml" filepath="E:/develop/IdeaProjects/SpringBoot/SpringBoot_quick/SpringBoot_quick.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wangfeng_ssm.iml" filepath="$PROJECT_DIR$/wangfeng_ssm.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangfeng.mapper.UserMapper">
+
+        <insert id="save" parameterType="user">
+            insert into user values (#{id},#{username},#{password},#{age})
+        </insert>
+
+        <select id="findUserByUsername" parameterType="java.lang.String" resultType="user">
+            select * from user where username = #{username}
+        </select>
+
+        <select id="findUserById" parameterType="java.lang.Integer" resultType="user" >
+            select * from user where id = #{id}
+        </select>
+
+
+        <select id="findAll" resultType="user">
+            select * from user
+        </select>
+
+        <resultMap id="userMap" type="user">
+            <id column="uid" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="password" property="password"></result>
+            <result column="age" property="age"></result>
+            <collection property="accountList" ofType="account">
+                <id column="acid" property="id"></id>
+                <result column="uid" property="uid"></result>
+                <result column="money" property="money"></result>
+            </collection>
+        </resultMap>
+
+        <select id="findAllUserWithAccount" resultMap="userMap">
+            SELECT *,ac.id acid FROM USER u,account ac WHERE u.id=ac.uid
+        </select>
+
+
+        <delete id="deleteByUid" parameterType="java.lang.Integer">
+            delete  from  account where uid = #{uid}
+        </delete>
+
+        <delete id="deleteById" parameterType="java.lang.Integer">
+            delete from user where id = #{id}
+        </delete>
+
+        <update id="updateUserById" parameterType="user">
+            update user set username =#{username},password=#{password},age=#{age} where id =#{id}
+        </update>
+
+</mapper>

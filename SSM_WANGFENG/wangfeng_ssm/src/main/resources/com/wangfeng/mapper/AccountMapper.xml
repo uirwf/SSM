@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangfeng.mapper.AccountMapper">
+
+    <insert id="save" parameterType="account">
+        insert into account values (#{uid},#{id},#{money})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from account where id = #{id}
+    </delete>
+
+    <select id="findAccountById" parameterType="java.lang.Integer" resultType="account">
+        select * from account where id = #{id}
+    </select>
+
+    <select id="findAllAccount" resultType="account">
+        select * from account
+    </select>
+
+    <resultMap id="accountMap" type="account">
+        <id column="acid" property="id"></id>
+        <result column="uid" property="uid"></result>
+        <result column="money" property="money"></result>
+        <result column="uid" property="user.id"></result>
+        <result column="username" property="user.username"></result>
+        <result column="password" property="user.password"></result>
+        <result column="age" property="user.age"></result>
+    </resultMap>
+
+    <select id="findAll" resultMap="accountMap">
+        SELECT *,ac.id acid FROM USER u,account ac WHERE u.id=ac.uid
+    </select>
+
+    <update id="updateAccountById" parameterType="account">
+        update account set uid = #{uid},money = #{money} where id = #{id}
+    </update>
+
+</mapper>
